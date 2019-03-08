@@ -1,14 +1,5 @@
-// TIPS & RESOURCES:
-// @TODO: Delete this section for final solution
-
-// https://www.w3schools.com/js/js_htmldom_eventlistener.asp
-
-// -------------------------------------------------------
-
-// from data.js
+// Assign the data from `data.js` to a descriptive variable
 var tableData = data;
-
-// YOUR CODE HERE!
 
 // Display table
 d3.select("tbody").selectAll().data(tableData).enter().append('tr').html(d=>{
@@ -37,6 +28,7 @@ function searchResults(tableData){
     selection.exit().remove();
 }
 
+
 // Get a handle on the submit button
 var submit = d3.select("#filter-btn");
 
@@ -54,9 +46,9 @@ submit.on("click", function() {
   console.log(inputValue);
   console.log(tableData);
 
-  var filteredTable = tableData.filter(sighting => sighting.datetime === inputValue);
+  var filteredData = tableData.filter(ufoSighting => ufoSighting.datetime === inputValue);
 
-  console.log(filteredTable)
+  console.log(filteredData)
   
-  searchResults(filteredTable)
+  searchResults(filteredData)
 });
