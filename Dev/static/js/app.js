@@ -1,7 +1,7 @@
 // Assign the data from `data.js` to a descriptive variable
 var tableData = data;
 
-// Display table
+// Use D3 to select table body and append table row
 d3.select("tbody").selectAll().data(tableData).enter().append('tr').html(d=>{
     return `<td>${d.datetime}</td>
     <td>${d.city}</td>
@@ -12,11 +12,10 @@ d3.select("tbody").selectAll().data(tableData).enter().append('tr').html(d=>{
     <td>${d.comments}</td>`
 })
 
-
 // Function to return the search results
 function searchResults(tableData){
     var selection = d3.select("tbody").selectAll('tr').data(tableData);
-    selection.enter().append("tr").merge(selection).html(d=>{
+    selection.enter().append("tr").merge(selection).html(d => {
         return `<td>${d.datetime}</td>
         <td>${d.city}</td>
         <td>${d.state}</td>
@@ -27,7 +26,6 @@ function searchResults(tableData){
     })
     selection.exit().remove();
 }
-
 
 // Get a handle on the submit button
 var submit = d3.select("#filter-btn");
@@ -46,7 +44,7 @@ submit.on("click", function() {
   console.log(inputValue);
   console.log(tableData);
 
-  var filteredData = tableData.filter(ufoSighting => ufoSighting.datetime === inputValue);
+  var filteredData = tableData.filter(tableRow => tableRow.datetime === inputValue);
 
   console.log(filteredData)
   
